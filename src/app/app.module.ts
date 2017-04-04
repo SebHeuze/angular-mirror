@@ -13,7 +13,6 @@ import { HttpModule } from '@angular/http';
   declarations: [ AppComponent, MirrorComponent, PluginSlotDirective],
   bootstrap:    [ AppComponent ],
   providers: [
-    PluginSlotDirective,
     PluginService
   ]
 })
