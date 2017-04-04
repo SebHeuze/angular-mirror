@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs/Observable';
 import {
     Directive,
     Input,
@@ -7,30 +6,26 @@ import {
     ViewContainerRef,
     ComponentFactoryResolver,
     ReflectiveInjector,
-    ComponentRef,
     ComponentFactory,
-    Type
 } from '@angular/core';
 import { PluginData } from './plugin-data.model';
 import { PluginService } from './plugin.service';
-import { PluginPlacement } from "./plugin-placement.model";
-
 @Directive({
     selector: 'ngc-plugin-slot'
 })
 export class PluginSlotDirective {
-    @Input() private name:any;
-    private pluginService:PluginService;
-    private viewContainerRef:ViewContainerRef;
-    private componentRefs:any;
-    private pluginChangeSubscription:any;
-    private componentFactoryResolver:ComponentFactoryResolver;
-    private compiler:Compiler;
+    @Input() private name: any;
+    private pluginService: PluginService;
+    private viewContainerRef: ViewContainerRef;
+    private componentRefs: any;
+    private pluginChangeSubscription: any;
+    private componentFactoryResolver: ComponentFactoryResolver;
+    private compiler: Compiler;
 
-    constructor(@Inject(ViewContainerRef) viewContainerRef:ViewContainerRef,
-                @Inject(ComponentFactoryResolver) componentFactoryResolver:ComponentFactoryResolver,
-                @Inject(PluginService) pluginService:PluginService,
-                @Inject(Compiler) compiler:Compiler) {
+    constructor(@Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
+                @Inject(ComponentFactoryResolver) componentFactoryResolver: ComponentFactoryResolver,
+                @Inject(PluginService) pluginService: PluginService,
+                @Inject(Compiler) compiler: Compiler) {
         this.compiler = compiler;
         this.viewContainerRef = viewContainerRef;
         this.componentFactoryResolver = componentFactoryResolver;
@@ -41,7 +36,6 @@ export class PluginSlotDirective {
         this.pluginChangeSubscription =
             this.pluginService
             .change.subscribe(() => this.initialize());
-        console.log("Plugin Slot loaded");
     }
 
     private initialize() {
@@ -57,14 +51,14 @@ export class PluginSlotDirective {
         (a, b) => a.placement.priority < b.placement.priority ?
             1 : a.placement.priority > b.placement.priority ? -1 : 0);
         return Promise.all(
-            pluginData.map((subPluginData:PluginData) =>
+            pluginData.map((subPluginData: PluginData) =>
             this.instantiatePluginComponent(subPluginData))
         );
     }
 
-    private instantiatePluginComponent(pluginData:PluginData) {
+    private instantiatePluginComponent(pluginData: PluginData) {
             return this.compiler.compileModuleAndAllComponentsAsync(pluginData.placement.component).then((moduleWithFactories) => {
-            moduleWithFactories.componentFactories.forEach((componentFactory:ComponentFactory<any>) => {
+            moduleWithFactories.componentFactories.forEach((componentFactory: ComponentFactory<any>) => {
 
             // Get the injector of the plugin slot parent component
             const contextInjector = this.viewContainerRef.parentInjector;

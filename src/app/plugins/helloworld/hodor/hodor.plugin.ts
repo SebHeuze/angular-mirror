@@ -11,7 +11,7 @@ export class HodorCompnent {
     public name: string;
     constructor(@Inject(PluginData) pluginData: PluginData) {
         this.plugin = pluginData.instance;
-        this.name = "HODOR ! ";
+        this.name = 'Hodor';
     }
 }
 

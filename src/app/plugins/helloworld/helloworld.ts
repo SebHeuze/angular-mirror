@@ -21,7 +21,7 @@ import { NgModule } from '@angular/core';
   declarations: [ HelloworlddayPluginModule]
 })
 export default class HelloWorldPlugin {
-    private name:String;
+    private name: String;
     constructor() {
         this.name = 'Test Name';
     }

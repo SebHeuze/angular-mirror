@@ -10,7 +10,7 @@ import { HttpModule } from '@angular/http';
 
 @NgModule({
   imports:      [ BrowserModule, routing, HttpModule ],
-  declarations: [ AppComponent, MirrorComponent,PluginSlotDirective],
+  declarations: [ AppComponent, MirrorComponent, PluginSlotDirective],
   bootstrap:    [ AppComponent ],
   providers: [
     PluginSlotDirective,
