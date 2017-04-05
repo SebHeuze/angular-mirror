@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 
 @PluginConfig({
     name: 'helloworld',
+    configUrl: 'helloworld.config.json',
     description: 'Hello World plugin',
     placements: [
         {slot: 'helloworldday', priority: 1,

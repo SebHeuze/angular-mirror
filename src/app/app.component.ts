@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { CustomRouterOutletDirective } from './lib/configloader/custom-router-outlet.directive';
 
 @Component({
   selector: 'my-app',
-  template: `<h1>Hello {{name}}</h1> <router-outlet></router-outlet>`,
+  template: `<custom-router-outlet></custom-router-outlet>`,
+  providers: [CustomRouterOutletDirective]
 })
-export class AppComponent  { name = 'Angular'; }
+export class AppComponent  { }

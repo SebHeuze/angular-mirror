@@ -4,16 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }  from './app.component';
 import { PluginService } from './lib/plugin/plugin.service';
 import { PluginSlotDirective } from './lib/plugin/plugin-slot.directive';
+import { CustomRouterOutletDirective } from './lib/configloader/custom-router-outlet.directive';
 
 import { routing } from './app.routes';
 import { HttpModule } from '@angular/http';
+import { ConfigService } from "./lib/configloader/config.service";
 
 @NgModule({
   imports:      [ BrowserModule, routing, HttpModule ],
-  declarations: [ AppComponent, MirrorComponent, PluginSlotDirective],
+  declarations: [ AppComponent, MirrorComponent, PluginSlotDirective, CustomRouterOutletDirective],
   bootstrap:    [ AppComponent ],
   providers: [
-    PluginService
+    PluginService,
+    ConfigService
   ]
 })
 export class AppModule { }

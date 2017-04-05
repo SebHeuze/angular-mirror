@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs/Rx';
 import { PluginData } from './plugin-data.model';
 import { PluginPlacement } from './plugin-placement.model';
-import { Http, Response }          from '@angular/http';
+import { Http, Response } from '@angular/http';
+import { ConfigService } from "../configloader/config.service";
 
 /**
  * PluginService used to manage plugins
@@ -20,7 +21,7 @@ export class PluginService {
     public change: ReplaySubject<PluginData[]>;
 
 
-    constructor(private http: Http) {
+    constructor(private _config: ConfigService, private http: Http) {
         this.plugins = [];
         // Tracking change of plugin list
         this.change = new ReplaySubject<PluginData[]>();
@@ -42,17 +43,20 @@ export class PluginService {
 
     //Load defaults plugins 
     private loadPlugins() {
-        this.http.get('app/plugins.json')
-        .map((res: Response) => res.json()).subscribe((res: any) => res.plugins.forEach((pluginUrl: String) =>
+        this.http.get('./plugins.json')
+        .map((res: Response) => res.json()).subscribe((res: any) => res.plugins.forEach((pluginUrl: string) =>
                 this.loadPlugin(pluginUrl)
             )
         );
     }
 
     //Load particular Plugin
-    private loadPlugin(url: String) {
+    private loadPlugin(url: string) {
         return System.import('app/plugins/' + url).then((pluginModule) => {
             const Plugin = pluginModule.default;
+
+           this._config.loadPluginConfig(Plugin._pluginConfig.name, Plugin._pluginConfig.configUrl);
+
             const pluginData = {
                 config: Plugin._pluginConfig,
                 placement: new PluginPlacement(),

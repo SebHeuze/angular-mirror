@@ -1,4 +1,3 @@
-import { Plugin } from './plugin.model';
 import { PluginPlacement } from "./plugin-placement.model";
 
 /**
@@ -7,8 +6,9 @@ import { PluginPlacement } from "./plugin-placement.model";
  * @interface PluginConfig
  */
 export interface PluginConfig {
-    name:String;
-    description:String;
+    name:string;
+    configUrl: string;
+    description:string;
     placements:Array<PluginPlacement>
 
 }
