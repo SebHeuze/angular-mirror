@@ -2,8 +2,6 @@ import { HodorModule } from './hodor/hodor.plugin';
 import { HelloworlddayPluginModule } from './helloworldday/helloworldday.plugin';
 import { HelloworldnamePluginModule } from './helloworldname/helloworldname.plugin';
 import { PluginConfig } from '../../lib/plugin/plugin-config.decorator';
-import { NgModule } from '@angular/core';
-
 
 @PluginConfig({
     name: 'helloworld',
@@ -17,9 +15,6 @@ import { NgModule } from '@angular/core';
         {slot: 'helloworldname', priority: 2,
         component: HodorModule}
     ]
-})
-@NgModule({
-  declarations: [ HelloworlddayPluginModule]
 })
 export default class HelloWorldPlugin {
     private name: String;

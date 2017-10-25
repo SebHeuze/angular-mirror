@@ -42,7 +42,7 @@ export class ConfigService {
 					return Observable.throw(error.json().error || 'Server error');
 				})
 				.subscribe((data) => {
-					console.log(configUrl + "loaded");
+					console.log(configUrl + ' loaded');
 					this._pluginConfig[pluginName] = data;
 					resolve(true);
 				});
