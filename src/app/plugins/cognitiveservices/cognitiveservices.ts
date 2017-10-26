@@ -7,7 +7,7 @@ import { PluginConfig } from '../../lib/plugin/plugin-config.decorator';
     configUrl: 'cognitiveservices.config.json',
     description: 'Microsoft Cognitive Services Plugin',
     placements: [
-        {slot: null, priority: 1,
+        {slot: 'helloworldday', priority: 4,
         component: FaceApiPluginModule}
     ]
 })

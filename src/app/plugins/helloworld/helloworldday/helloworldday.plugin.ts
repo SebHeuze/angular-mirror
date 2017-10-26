@@ -14,7 +14,7 @@ export class HelloworlddayPluginComponent {
         this.eventService = eventService;
         this.date = new Date();
 
-        this.eventService.testEvent.subscribe(message => this.testEvent(message));
+        this.eventService.testEvent.subscribe((message: String) => this.testEvent(message));
         console.log('Hello world day loaded');
     }
 

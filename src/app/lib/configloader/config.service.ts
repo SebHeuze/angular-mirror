@@ -13,7 +13,10 @@ export class ConfigService {
 	private _config: Object
 	private _pluginConfig: Object
 
+	private dataLoaded: Boolean
+
 	constructor(private http: Http) {
+		this.dataLoaded = false;
 		this._pluginConfig = {};
 		this._config = {};
 	}
@@ -44,6 +47,7 @@ export class ConfigService {
 				.subscribe((data) => {
 					console.log(configUrl + ' loaded');
 					this._pluginConfig[pluginName] = data;
+					this.dataLoaded = true;
 					resolve(true);
 				});
 		});

@@ -1,4 +1,5 @@
 import { EventService } from './../lib/events/event.service';
+import { ConfigService } from './../lib/configloader/config.service';
 import {
   Component,
   OnInit,
@@ -11,7 +12,7 @@ import { PluginSlotDirective } from '../lib/plugin/plugin-slot.directive';
 
 @Component({
   selector: 'mirror',
-  providers: [PluginSlotDirective, EventService],
+  providers: [PluginSlotDirective, EventService, ConfigService],
   styleUrls: [ '/app/mirror/mirror.component.css' ],
   templateUrl: '/app/mirror/mirror.component.html'
 })
@@ -19,9 +20,11 @@ export class MirrorComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
   private eventService: EventService;
+  private configService: ConfigService;
 
-  constructor(eventService: EventService) {
+  constructor(eventService: EventService, configService: ConfigService) {
     this.eventService = eventService;
+    this.configService = configService;
   }
   public ngOnInit() {
     console.log('hello `Home` component');
