@@ -1,4 +1,4 @@
-<div  *ngIf="configService.dataLoaded">
+<div  *ngIf="!configService.dataLoaded">
     <h1 class="greetings">Smart Mirror</h1>
     <h2>
         <ngc-plugin-slot name="helloworldname"></ngc-plugin-slot>
@@ -7,5 +7,5 @@
         <ngc-plugin-slot name="helloworldday"></ngc-plugin-slot>
     </h3>
 
-    <button (click)="emitTestEvent()">testEvent</button>
 </div>
+<button (click)="emitTestEvent()">testEvent</button>

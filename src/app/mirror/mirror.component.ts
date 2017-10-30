@@ -1,5 +1,7 @@
 import { EventService } from './../lib/events/event.service';
 import { ConfigService } from './../lib/configloader/config.service';
+import { PluginService } from './../lib/plugin/plugin.service';
+
 import {
   Component,
   OnInit,
@@ -19,13 +21,10 @@ import { PluginSlotDirective } from '../lib/plugin/plugin-slot.directive';
 export class MirrorComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
-  private eventService: EventService;
-  private configService: ConfigService;
 
-  constructor(eventService: EventService, configService: ConfigService) {
-    this.eventService = eventService;
-    this.configService = configService;
+  constructor(private eventService: EventService, private configService: ConfigService, private pluginService: PluginService) {
   }
+
   public ngOnInit() {
     console.log('hello `Home` component');
   }
@@ -37,6 +36,7 @@ export class MirrorComponent implements OnInit {
 
   public emitTestEvent() {
     console.log('Test event triggered');
-    this.eventService.testEvent.emit('YOUHOU');
+    this.configService.dataLoaded = true;
+    //this.eventService.testEvent.emit('YOUHOU');
   }
 }

@@ -25,11 +25,12 @@ export class PluginService {
         this.plugins = [];
         // Tracking change of plugin list
         this.change = new ReplaySubject<PluginData[]>();
-        this.loadPlugins();
     }
 
     //Get plugins to load in specified slot
     public getPluginData(slot: String) {
+        console.log(this.plugins);
+        console.log(slot);
         return this.plugins.reduce((components, pluginData) => {
             return components.concat(
                 pluginData.config.placements
@@ -42,12 +43,18 @@ export class PluginService {
     }
 
     //Load defaults plugins 
-    private loadPlugins() {
-        this.http.get('./plugins.json')
-        .map((res: Response) => res.json()).subscribe((res: any) => res.plugins.forEach((pluginUrl: string) =>
-                this.loadPlugin(pluginUrl)
-            )
-        );
+    public loadPlugins() {
+        return new Promise((resolve, reject) => {
+			this.http.get('./plugins.json')
+            .map((res: Response) => res.json()).subscribe((data) => {
+                data.plugins.forEach((pluginUrl: string) =>
+                this.loadPlugin(pluginUrl));
+                console.log("Plugin config Loaded");
+                resolve(true);
+            });
+            
+            this._config.dataLoaded = true;
+        });
     }
 
     //Load particular Plugin

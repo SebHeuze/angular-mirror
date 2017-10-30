@@ -30,16 +30,18 @@ export class PluginSlotDirective {
     //Used to sucribe to plugin's changes
     private pluginChangeSubscription: any;
 
+    ngOnInit() {
+        // Subscribing to changes on the plugin service and re-
+        // initialize slot if needed
+        this.pluginChangeSubscription =
+        this.pluginService.change.subscribe(() => this.initialize());
+    }
+
     constructor(private viewContainerRef: ViewContainerRef,
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private pluginService: PluginService,
                 private compiler: Compiler) {
         this.componentRefs = [];
-
-        // Subscribing to changes on the plugin service and re-
-        // initialize slot if needed
-        this.pluginChangeSubscription =
-            pluginService.change.subscribe(() => this.initialize());
     }
 
     private initialize() {
@@ -59,6 +61,8 @@ export class PluginSlotDirective {
         (a, b) => a.placement.priority < b.placement.priority ?
             1 : a.placement.priority > b.placement.priority ? -1 : 0);
 
+        console.log("PluginSlotDirective initialized pluginData : " + pluginData.length);
+
         //Load each plugin    
         return Promise.all(
             pluginData.map((subPluginData: PluginData) =>
@@ -72,7 +76,7 @@ export class PluginSlotDirective {
 
             // Get the injector of the plugin slot parent component
             const contextInjector = this.viewContainerRef.parentInjector;
-
+            console.log("ViewContainerRef" + this.viewContainerRef);
             // Preparing additional PluginData provider for the created
             // plugin component, allow to access parent plugin from components
             const providers = [
