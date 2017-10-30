@@ -1,3 +1,4 @@
+import { PluginService } from './../plugin/plugin.service';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -10,8 +11,8 @@ import { Observable } from 'rxjs/Observable';
  */
 @Injectable()
 export class ConfigService {
-	private _config: Object
-	private _pluginConfig: Object
+	private _config: Dictionary;
+	private _pluginConfig: Dictionary;
 
 	public dataLoaded: Boolean
 
@@ -36,20 +37,20 @@ export class ConfigService {
 		});
 	}
 
-	loadPluginConfig(pluginName: string, configUrl: string) {
-		return new Promise((resolve, reject) => {
-			this.http.get("app/plugins/" + pluginName + '/' + configUrl)
-				.map(res => res.json())
-				.catch((error: any) => {
-					console.error(error);
-					return Observable.throw(error.json().error || 'Server error');
-				})
-				.subscribe((data) => {
-					console.log(configUrl + ' loaded');
-					this._pluginConfig[pluginName] = data;
-					resolve(true);
-				});
-		});
+	loadPluginConfig(pluginName: string, configUrl: string, pluginService: PluginService) {
+		this.http.get("app/plugins/" + pluginName + '/' + configUrl)
+			.map(res => res.json())
+			.catch((error: any) => {
+				console.error(error);
+				return Observable.throw(error.json().error || 'Server error');
+			})
+			.subscribe((data) => {
+				console.log(configUrl + ' loaded');
+				this._pluginConfig[pluginName] = data;
+				if (this._pluginConfig.length === pluginService.plugins.length) {
+					pluginService.pluginsConfigLoaded(true);
+				}
+			});
 	}
 
 	//Main config before plugin Config

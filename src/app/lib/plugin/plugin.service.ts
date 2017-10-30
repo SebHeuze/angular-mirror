@@ -15,11 +15,13 @@ import { ConfigService } from "../configloader/config.service";
 export class PluginService {
 
     //List of all activated plugins
-    private plugins: Array<PluginData>;
+    public plugins: Array<PluginData>;
 
     //Allow to subscribe to plugins changes
     public change: ReplaySubject<PluginData[]>;
 
+    //Allow to resolve promise used in plugins config load
+    public pluginsConfigLoaded: any;
 
     constructor(private _config: ConfigService, private http: Http) {
         this.plugins = [];
@@ -49,11 +51,8 @@ export class PluginService {
             .map((res: Response) => res.json()).subscribe((data) => {
                 data.plugins.forEach((pluginUrl: string) =>
                 this.loadPlugin(pluginUrl));
-                console.log("Plugin config Loaded");
-                resolve(true);
+                this.pluginsConfigLoaded = resolve;
             });
-            
-            this._config.dataLoaded = true;
         });
     }
 
@@ -62,7 +61,7 @@ export class PluginService {
         return System.import('app/plugins/' + url).then((pluginModule) => {
             const Plugin = pluginModule.default;
 
-           this._config.loadPluginConfig(Plugin._pluginConfig.name, Plugin._pluginConfig.configUrl);
+            this._config.loadPluginConfig(Plugin._pluginConfig.name, Plugin._pluginConfig.configUrl, this);
 
             const pluginData = {
                 config: Plugin._pluginConfig,
@@ -71,6 +70,7 @@ export class PluginService {
             };
             this.plugins = this.plugins.concat([pluginData]);
             this.change.next(this.plugins);
+
         });
     }
 }
