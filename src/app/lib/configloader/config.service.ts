@@ -11,8 +11,8 @@ import { Observable } from 'rxjs/Observable';
  */
 @Injectable()
 export class ConfigService {
-	private _config: Dictionary;
-	private _pluginConfig: Dictionary;
+	private _config: Object;
+	private _pluginConfig: Object;
 
 	public dataLoaded: Boolean
 
@@ -21,6 +21,7 @@ export class ConfigService {
 		this._pluginConfig = {};
 		this._config = {};
 	}
+	
 	load() {
 		return new Promise((resolve, reject) => {
 			this.http.get('config.json')
@@ -47,8 +48,8 @@ export class ConfigService {
 			.subscribe((data) => {
 				console.log(configUrl + ' loaded');
 				this._pluginConfig[pluginName] = data;
-				if (this._pluginConfig.length === pluginService.plugins.length) {
-					pluginService.pluginsConfigLoaded(true);
+				if (Object.keys(this._pluginConfig).length === pluginService.plugins.length) {
+					pluginService.pluginLoaded();
 				}
 			});
 	}

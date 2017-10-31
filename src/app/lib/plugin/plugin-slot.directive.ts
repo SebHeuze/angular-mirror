@@ -34,7 +34,7 @@ export class PluginSlotDirective {
         // Subscribing to changes on the plugin service and re-
         // initialize slot if needed
         this.pluginChangeSubscription =
-        this.pluginService.change.subscribe(() => this.initialize());
+        this.pluginService.change.subscribe((value: any) => this.initialize(value));
     }
 
     constructor(private viewContainerRef: ViewContainerRef,
@@ -44,7 +44,8 @@ export class PluginSlotDirective {
         this.componentRefs = [];
     }
 
-    private initialize() {
+    private initialize(value: any) {
+
         // First unload all existing components
         if (this.componentRefs.length > 0) {
             this.componentRefs.forEach(
@@ -52,6 +53,7 @@ export class PluginSlotDirective {
             );
             this.componentRefs = [];
         }
+
 
         //Get pluginData that fit to that slot
         const pluginData = this.pluginService.getPluginData(this.name);
@@ -77,6 +79,7 @@ export class PluginSlotDirective {
             // Get the injector of the plugin slot parent component
             const contextInjector = this.viewContainerRef.parentInjector;
             console.log("ViewContainerRef" + this.viewContainerRef);
+            
             // Preparing additional PluginData provider for the created
             // plugin component, allow to access parent plugin from components
             const providers = [
@@ -92,8 +95,10 @@ export class PluginSlotDirective {
             // container and the resolved component factory
             const componentRef = this.viewContainerRef
                 .createComponent(componentFactory, this.viewContainerRef.length, childInjector);
+            console.log("componentRef" + pluginData.config.name);
             this.componentRefs.push(componentRef);
-            });
+
+        });
         });
     }
 }

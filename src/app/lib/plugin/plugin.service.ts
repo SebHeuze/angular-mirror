@@ -69,8 +69,12 @@ export class PluginService {
                 instance: new Plugin()
             };
             this.plugins = this.plugins.concat([pluginData]);
-            this.change.next(this.plugins);
 
         });
+    }
+
+    public pluginLoaded() {
+        this.pluginsConfigLoaded(true);
+        this.change.next(this.plugins);
     }
 }

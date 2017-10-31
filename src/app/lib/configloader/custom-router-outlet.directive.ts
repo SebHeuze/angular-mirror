@@ -1,5 +1,5 @@
-import { Directive, Attribute, ElementRef, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { Router, RouterOutlet, RouterOutletMap, ActivatedRoute } from '@angular/router';
+import { Directive, Attribute, ElementRef, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorRef  } from '@angular/core';
+import { Router, RouterOutlet, ActivatedRoute, ChildrenOutletContexts} from '@angular/router';
 import { ConfigService } from './config.service';
 import {PluginService} from './../plugin/plugin.service';
 /**
@@ -15,13 +15,13 @@ import {PluginService} from './../plugin/plugin.service';
 export class CustomRouterOutletDirective extends RouterOutlet {
 	publicRoutes: any;
 	private parentRouter: Router;
-	constructor(_routeurOutletMap: RouterOutletMap, location: ViewContainerRef, _loader: ComponentFactoryResolver,
-		@Attribute('name') nameAttr: string, private _config: ConfigService, private _pluginService: PluginService) {
-		super(_routeurOutletMap, location, _loader, nameAttr);
+	constructor(_parentContexts: ChildrenOutletContexts, location: ViewContainerRef, resolver: ComponentFactoryResolver, @Attribute("name") name: string, changeDetector: ChangeDetectorRef,
+		 private _config: ConfigService, private _pluginService: PluginService) {
+		super(_parentContexts, location, resolver, name, changeDetector);
 	}
-	activateWith(activatedRoute: ActivatedRoute, resolver: ComponentFactoryResolver | null, outletMap: RouterOutletMap) {
+	activateWith(activatedRoute: ActivatedRoute, resolver: ComponentFactoryResolver | null) {
 		return this._config.load().then(() => {
-			 return this._pluginService.loadPlugins().then( () => { return super.activateWith(activatedRoute, resolver, outletMap) });
+			 return this._pluginService.loadPlugins().then( () => { return super.activateWith(activatedRoute, resolver) });
 			})
 	}
 }
