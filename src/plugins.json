@@ -1,3 +1,3 @@
 {
-    "plugins": ["helloworld/helloworld", "cognitiveservices/cognitiveservices"]
+    "plugins": ["helloworld/helloworld"]
 }
