@@ -31,9 +31,9 @@ export class MirrorComponent implements OnInit {
     this.localState.value = '';
   }
 
-  public emitTestEvent() {
-    console.log('Test event triggered');
+  public emitIdentifyEvent() {
+    console.log('IdentifyEvent event triggered');
     this.configService.dataLoaded = true;
-    this.eventService.testEvent.emit('YOUHOU');
+    this.eventService.identifyEvent.emit(null);
   }
 }

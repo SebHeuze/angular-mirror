@@ -9,17 +9,9 @@ import { PluginData } from '../../../lib/plugin/plugin-data.model';
 })
 export class HelloworlddayPluginComponent {
     public date: Date;
-    public eventService: EventService;
-    constructor(eventService: EventService) {
-        this.eventService = eventService;
+    constructor(private eventService: EventService) {
         this.date = new Date();
-
-        this.eventService.testEvent.subscribe((message: String) => this.testEvent(message));
         console.log('Hello world day loaded');
-    }
-
-    testEvent(message: String) {
-        console.log(message);
     }
 }
 

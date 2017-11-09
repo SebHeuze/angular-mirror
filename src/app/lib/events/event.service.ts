@@ -9,6 +9,6 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 @Injectable()
 export class EventService {
 
-    @Output() testEvent: EventEmitter<any> = new EventEmitter();
+    @Output() identifyEvent: EventEmitter<any> = new EventEmitter();
 
 }

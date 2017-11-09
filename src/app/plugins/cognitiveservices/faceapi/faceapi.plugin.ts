@@ -27,11 +27,10 @@ export class FaceApiPluginComponent {
 
     constructor(private _config:ConfigService, private eventService: EventService, private faceApiService:FaceApiService, @Inject(PluginData) private pluginData: PluginData) {
         this.plugin = this.pluginData.instance;
-        this.eventService.testEvent.subscribe((message: String) => this.capture(message));        
+        this.eventService.identifyEvent.subscribe((event: any) => this.capture(event));        
     }
 
-    capture(message: String) {
-        console.log("test");
+    capture(event: any) {
         this.webcam.getBase64()
         .then((base: String)=> this.faceApiService.detectFaces(this.webcam.dataUriToFormData(base,{}).get("file") as File))
         .catch((e: any)=>console.error(e) )  
