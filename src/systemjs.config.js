@@ -26,6 +26,7 @@
             // other libraries
             'rxjs': 'npm:rxjs',
             'ack-angular-webcam': 'npm:ack-angular-webcam',
+            'annyang': 'npm:annyang/dist/annyang.js',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
@@ -41,7 +42,7 @@
             rxjs: {
                 defaultExtension: 'js'
             },
-            "ack-angular-webcam": {
+            'ack-angular-webcam': {
                 defaultExtension: 'js'
             },
         }
