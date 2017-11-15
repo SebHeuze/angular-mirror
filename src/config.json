@@ -2,7 +2,6 @@
     "testConfig": "Hooootdoor",
 	"greeting": ["Hi, sexy!", "Greetings, commander"],
 	"speech": {
-        "projectId": "streaming-speech-sample",
-		"keyword": "Jarvis"
+        "language": "FR-fr"
 	}
 }

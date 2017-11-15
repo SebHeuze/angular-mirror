@@ -9,6 +9,7 @@ import { CustomRouterOutletDirective } from './lib/configloader/custom-router-ou
 import { routing } from './app.routes';
 import { HttpModule } from '@angular/http';
 import { ConfigService } from "./lib/configloader/config.service";
+import AnnyangService from 'app/lib/voicerecognition/annyang.service';
 
 @NgModule({
   imports:      [ BrowserModule, routing, HttpModule ],
@@ -16,7 +17,8 @@ import { ConfigService } from "./lib/configloader/config.service";
   bootstrap:    [ AppComponent ],
   providers: [
     PluginService,
-    ConfigService
+    ConfigService,
+    AnnyangService
   ]
 })
 export class AppModule { }

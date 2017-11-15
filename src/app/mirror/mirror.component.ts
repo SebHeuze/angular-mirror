@@ -8,6 +8,7 @@ import {
   EventEmitter,
   Output
 } from '@angular/core';
+import AnnyangService from 'app/lib/voicerecognition/annyang.service';
 
 @Component({
   selector: 'mirror',
@@ -19,11 +20,19 @@ export class MirrorComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
 
-  constructor(private eventService: EventService, private configService: ConfigService, private pluginService: PluginService) {
+  constructor(private annyangService: AnnyangService, private eventService: EventService, private configService: ConfigService, private pluginService: PluginService) {
+    
   }
 
   public ngOnInit() {
     console.log('hello `Home` component');
+    
+    this.annyangService.start();
+    this.annyangService.addCommand("bonjour", () => this.helloWorld());
+  }
+
+  public helloWorld() {
+    alert(this.configService.get("testConfig"));
   }
 
   public submitState(value: string) {
