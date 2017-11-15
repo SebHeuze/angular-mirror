@@ -14,3 +14,4 @@ _test-output
 _temp
 .vs
 .vscode
+*.config.json
