@@ -30,6 +30,7 @@ export class DarkSkyService {
             method: 'get',
             headers: headers,
             params: {'lang' : 'fr',
+                     'units' : 'auto',
                     'callback' : 'JSONP_CALLBACK'}
         };
 
