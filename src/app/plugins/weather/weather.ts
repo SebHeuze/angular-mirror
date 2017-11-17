@@ -1,5 +1,5 @@
 import { PluginConfig } from '../../lib/plugin/plugin-config.decorator';
-import { WeatherPluginModule } from 'app/plugins/weather/weather/weather.plugin';
+import { WeatherPluginModule } from './weather/weather.plugin';
 
 
 @PluginConfig({
