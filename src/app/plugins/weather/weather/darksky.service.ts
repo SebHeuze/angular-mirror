@@ -3,6 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Http, RequestOptionsArgs, Headers, Response, Jsonp } from '@angular/http';
 import { ConfigService } from '../../../lib/configloader/config.service';
+import { Forecast } from './forecast.model';
 
 @Injectable()
 export class DarkSkyService {
@@ -21,7 +22,7 @@ export class DarkSkyService {
     }
 
 
-    public callForecast(): void {
+    public callForecast() {
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -32,9 +33,9 @@ export class DarkSkyService {
                     'callback' : 'JSONP_CALLBACK'}
         };
 
-        let response = this.jsonp.request(this.host + "forecast/" + this.key + "/" + this.latitude + "," + this.longitude, args)
-        .subscribe( data => {
-            console.log(data);
+        return this.jsonp.request(this.host + "forecast/" + this.key + "/" + this.latitude + "," + this.longitude, args)
+        .map( data => {
+            return <Forecast>data.json()
          });
     }
 }
