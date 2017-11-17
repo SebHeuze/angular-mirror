@@ -1,0 +1,14 @@
+{
+    "faceAPI": {
+        "host": "https://westeurope.api.cognitive.microsoft.com/face/v1.0",
+        "key": "APIKEY"
+    },
+    "visionAPI": {
+        "host": "https://westeurope.api.cognitive.microsoft.com/vision/v1.0",
+        "key": "APIKEY"
+    },
+    "emotionAPI": {
+        "host": "https: //westus.api.cognitive.microsoft.com/emotion/v1.0",
+        "key": "APIKEY"
+    }
+}
