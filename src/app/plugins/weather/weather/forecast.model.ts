@@ -4,4 +4,5 @@ export interface Forecast {
 export interface Currently {
     summary: string;
     temperature: number;
+    icon: string;
 }
