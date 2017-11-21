@@ -7,11 +7,11 @@ import { PluginSlotDirective } from './lib/plugin/plugin-slot.directive';
 import { CustomRouterOutletDirective } from './lib/configloader/custom-router-outlet.directive';
 
 import { routing } from './app.routes';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { ConfigService } from "./lib/configloader/config.service";
 
 @NgModule({
-  imports:      [ BrowserModule, routing, HttpModule ],
+  imports:      [ BrowserModule, routing, HttpModule, JsonpModule ],
   declarations: [ AppComponent, MirrorComponent, PluginSlotDirective, CustomRouterOutletDirective],
   bootstrap:    [ AppComponent ],
   providers: [

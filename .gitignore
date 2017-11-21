@@ -10,6 +10,7 @@ src/**/*.js
 *.js.map
 e2e/**/*.js
 e2e/**/*.js.map
+src/dist/*
 _test-output
 _temp
 *.config.json
