@@ -1,3 +1,3 @@
 {
-    "plugins": ["helloworld/helloworld","weather/weather"]
+    "plugins": ["helloworld/helloworld", "weather/weather", "cryptowatch/cryptowatch"]
 }
