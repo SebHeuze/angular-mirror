@@ -12,7 +12,7 @@ import {
 @Component({
   selector: 'mirror',
   providers: [EventService],
-  styleUrls: [ '/app/mirror/mirror.component.css' ],
+  styleUrls: [ 'app/mirror/mirror.component.css' ],
   templateUrl: '/app/mirror/mirror.component.html'
 })
 export class MirrorComponent implements OnInit {

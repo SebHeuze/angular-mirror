@@ -12,7 +12,7 @@ export class HelloworldnamePluginComponent {
     public name: string;
     constructor(private _config:ConfigService, @Inject(PluginData) pluginData: PluginData) {
         this.plugin = pluginData.instance;
-        this.name = _config.get('testConfig') +  _config.get('speech').projectId + _config.get('helloworld').name;
+        this.name = _config.get('helloworld').name;
         console.log('Hello world name loaded');
     }
 }

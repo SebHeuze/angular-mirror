@@ -1,13 +1,10 @@
 <div>
     <h1 class="greetings">Smart Mirror</h1>
-    <h2>
-        <ngc-plugin-slot  name="helloworldname"></ngc-plugin-slot>
-    </h2>
-    <h3>
-        <ngc-plugin-slot name="helloworldday"></ngc-plugin-slot>
-    </h3>
 
-    <ngc-plugin-slot name="helloworldday2"></ngc-plugin-slot>
-    
-    <button (click)="emitIdentifyEvent()">identifyEvent</button>
+    <div id="upright"><ngc-plugin-slot name="upright"></ngc-plugin-slot></div>
+    <div id="downrigt"><ngc-plugin-slot name="downright"></ngc-plugin-slot></div>
+    <div><ngc-plugin-slot name="center"></ngc-plugin-slot></div>
+    <div id="upleft"><ngc-plugin-slot name="upleft"></ngc-plugin-slot></div>
+    <div id="downleft"><ngc-plugin-slot name="downleft"></ngc-plugin-slot></div>
+
 </div>

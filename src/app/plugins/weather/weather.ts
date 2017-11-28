@@ -7,7 +7,7 @@ import { WeatherPluginModule } from './weather/weather.plugin';
     configUrl: 'weather.config.json',
     description: 'Weather Plugin',
     placements: [
-        {slot: 'helloworldday2', priority: 4,
+        {slot: 'upright', priority: 1,
         component: WeatherPluginModule}
     ]
 })

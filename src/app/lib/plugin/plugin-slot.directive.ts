@@ -60,8 +60,8 @@ export class PluginSlotDirective {
         
         //Sort using priority
         pluginData.sort(
-        (a, b) => a.placement.priority < b.placement.priority ?
-            1 : a.placement.priority > b.placement.priority ? -1 : 0);
+        (a, b) => a.placement.priority > b.placement.priority ?
+            1 : a.placement.priority < b.placement.priority ? -1 : 0);
 
         console.log("PluginSlotDirective initialized pluginData : " + pluginData.length);
 

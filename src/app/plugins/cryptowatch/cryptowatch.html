@@ -1,5 +1,7 @@
-Crypto plugin
+<div id="cryptowatch">
 
-<div *ngFor="let coin of watchlist">
-    {{coin.symbol}} : {{coin.percent_change_24h}}
+<div class="cryptocurrency {{coin.percent_change_24h > 0 ? 'up' : 'down'}}" *ngFor="let coin of watchlist">
+    {{coin.symbol}} : {{coin.percent_change_24h}}%
+        
+</div>
 </div>

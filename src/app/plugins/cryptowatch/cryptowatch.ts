@@ -7,7 +7,7 @@ import { CryptowatchPluginModule } from './cryptowatch.plugin';
     configUrl: 'cryptowatch.config.json',
     description: 'Cryptowatch Plugin',
     placements: [
-        {slot: 'helloworldday2', priority: 4,
+        {slot: 'upright', priority: 2,
         component: CryptowatchPluginModule}
     ]
 })

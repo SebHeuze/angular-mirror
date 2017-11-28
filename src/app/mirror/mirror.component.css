@@ -1,3 +1,24 @@
 .greetings {
     color: white;
 }
+
+#upleft {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#upright {
+	position: absolute;
+	top: 0;
+	right: 0%;
+}
+#downleft {
+	position: absolute;
+	bottom: 0%;
+	left: 0;
+}
+#downright {
+	bottom: 0%;
+	right: 0%;
+	position: absolute;
+}
